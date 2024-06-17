@@ -1,0 +1,102 @@
+{
+  "key_difference1": {
+    "Document 1": {
+      "Parties Involved": {
+        "Parent": "Madison Productions, LLC",
+        "Merger Sub": "Big Kahuna Holdings, Inc.",
+        "Company": "Restoration Hardware, Inc."
+      },
+      "Date of Agreement": "November 8, 2022"
+    },
+    "Document 2": {
+      "Parties Involved": {
+        "Parent": "Amazon.com, Inc.",
+        "Merger Sub": "Martin Merger Sub, Inc.",
+        "Company": "iRobot Corporation"
+      },
+      "Date of Agreement": "August 4, 2022"
+    },
+    "Legal Assistant comment": "Different companies and agreement dates indicate distinct transactions."
+  },
+  "key_difference2": {
+    "Document 1": {
+      "Effective Time": "Upon filing with the Delaware Secretary of State or at a specified later time"
+    },
+    "Document 2": {
+      "Effective Time": "Promptly after the Closing Date"
+    },
+    "Legal Assistant comment": "Document 1 provides flexibility for specifying a later effective time, while Document 2 mandates immediate consummation post-closing date."
+  },
+  "key_difference3": {
+    "Document 1": {
+      "Closing Details": "Third business day after fulfilling or waiving conditions in Article VI, at Gibson, Dunn & Crutcher LLP, New York"
+    },
+    "Document 2": {
+      "Closing Details": "Third business day following satisfaction or waiver of Article VII conditions, virtually at 9:00 a.m. (New York time)"
+    },
+    "Legal Assistant comment": "Document 1 specifies a physical location for closing, whereas Document 2 specifies virtual closing."
+  },
+  "key_difference4": {
+    "Document 1": {
+      "Capital Stock Conversion": "$6.70 per share in cash, excluding Cancelled and Dissenting Shares"
+    },
+    "Document 2": {
+      "Capital Stock Conversion": "$61.00 per share in cash, except Cancelled and Dissenting Shares"
+    },
+    "Legal Assistant comment": "Different per-share cash conversion values signify different financial terms."
+  },
+  "key_difference5": {
+    "Document 1": {
+      "Employee Stock Options and RSUs": "Stock Options will be canceled for cash payments; RSUs will be assumed or replaced with a cash incentive program",
+    },
+    "Document 2": {
+      "Employee Stock Purchase Plan (ESPP)": "Final offering from May 15, 2022, to Closing Date; No new offerings post-Agreement Date; ESPP terminates on ESPP Termination Date"
+    },
+    "Legal Assistant comment": "Document 1 focuses on Options and RSUs, while Document 2 includes provisions for ESPP."
+  },
+  "key_difference6": {
+    "Document 1": {
+      "Compliance Period": "Since January 1, 2021"
+    },
+    "Document 2": {
+      "Compliance Period": "Since January 1, 2019"
+    },
+    "Legal Assistant comment": "Document 2 has a broader compliance period, covering additional years."
+  },
+  "key_difference7": {
+    "Document 1": {
+      "Stockholder Voting Requirement": "Majority of outstanding shares and at least 66 2/3% of outstanding shares"
+    },
+    "Document 2": {
+      "Stockholder Approval Requirement": "Unanimous board approval from all parties; stockholder approval required"
+    },
+    "Legal Assistant comment": "Document 1 specifies detailed voting thresholds, while Document 2 mentions unanimous board and general stockholder approval."
+  },
+  "key_difference8": {
+    "Document 1": {
+      "Termination Fee": "Cost-bearing, mutual consent, unilateral termination under specified conditions with associated fees and expenses"
+    },
+    "Document 2": {
+      "Termination Fees": "A termination fee of $56,000,000 from Company to Parent, $94,000,000 from Parent to Company under specified conditions"
+    },
+    "Legal Assistant comment": "Document 2 provides specific termination fee amounts and conditions, whereas Document 1 discusses cost-sharing and agreed termination."
+  },
+  "key_difference9": {
+    "Document 1": {
+      "Employee Matters": "Parent to honor existing plans and provide comparable benefits for 12 months post-merger"
+    },
+    "Document 2": {
+      "Post-Effective Time Benefits": "Parent will provide benefits to Continuing Employees for one year post-Effective Time, including specific provisions for health plans and service recognition"
+    },
+    "Legal Assistant comment": "Both documents ensure employee benefits post-merger but Document 2 includes more detailed provisions."
+  },
+  "key_difference10": {
+    "Document 1": {
+      "Material Adverse Effect": "Excludes general economic changes"
+    },
+    "Document 2": {
+      "Material Adverse Effect": "Excludes general economic changes and industry-specific impacts"
+    },
+    "Legal Assistant comment": "Document 2 expands the exclusion to include industry-specific impacts."
+  }
+}
