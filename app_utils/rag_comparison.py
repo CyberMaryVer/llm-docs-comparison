@@ -130,7 +130,8 @@ def pipeline(doc1_path, doc2_path, api_key, model_name="gpt-3.5-turbo", save_int
     doc1 = convert_column_to_text(df, "Document 1")
     doc2 = convert_column_to_text(df, "Document 2")
     compare_prompt = fill_compare_prompt_2(doc1, doc2, additional_info)
-    final_result = ask_openai(compare_prompt, model_name=model_name, max_tokens=4000, verbose=False)
+    final_model_name = "gpt-4o" if model_name == "gpt-3.5-turbo" else model_name
+    final_result = ask_openai(compare_prompt, model_name=final_model_name, max_tokens=4000, verbose=False)
     save_step_in_temp_dir(final_result, 2, 'rag_step') if save_intermediate_steps else None
     return final_result
 
