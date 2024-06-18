@@ -58,3 +58,13 @@ In summary, the Base approach is simple and robust but time-consuming and costly
 
 However, the final approach should be chosen according to test results with experts and aligned with business goals.
 
+### Installation of UI
+Both approaches were implemented in a Streamlit UI.
+
+To run the UI, follow these steps:
+```bash
+pip install -r requirements.txt
+run streamlit app.py
+```
+
+![ui](ui.jpg)
