@@ -73,7 +73,7 @@ def create_map_reduce_chain(llm,
         # If documents exceed context for `StuffDocumentsChain`
         collapse_documents_chain=combine_documents_chain,
         # The maximum number of tokens to group documents into.
-        token_max=4000,
+        token_max=12000,
     )
     map_reduce_chain = MapReduceDocumentsChain(
         llm_chain=map_chain,
@@ -84,6 +84,14 @@ def create_map_reduce_chain(llm,
     return map_reduce_chain
 
 
+def create_stuff_chain(llm):
+    prompt_template = MAP_PROMPT
+    prompt = PromptTemplate.from_template(prompt_template)
+    llm_chain = LLMChain(llm=llm, prompt=prompt)
+    stuff_chain = StuffDocumentsChain(llm_chain=llm_chain, document_variable_name="docs")
+    return stuff_chain
+
+
 def fill_compare_prompt(doc1, doc2):
     return COMPARE_PROMPT.replace("{doc1}", doc1).replace("{doc2}", doc2)
 
@@ -91,11 +99,12 @@ def fill_compare_prompt(doc1, doc2):
 def summarize_document(doc_path, api_key, model_name="gpt-4o"):
     pages = split_document_to_pages(doc_path)
     llm = create_llm(api_key, model_name)
-    map_reduce_chain = create_map_reduce_chain(llm)
-    result = map_reduce_chain.invoke(pages)
+    chain = create_map_reduce_chain(llm)
+    # chain = create_stuff_chain(llm)
+    result = chain.invoke(pages)
     with open("temp/debug.txt", "w") as f:
         f.write(str(result))
-    result = str(result)
+    result = result['output_text']
     return result
 
 
