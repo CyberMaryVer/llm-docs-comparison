@@ -47,6 +47,7 @@ def main():
                 st.session_state["result"] = result
 
         if 'result' in st.session_state:
+            result = st.session_state["result"]
             df_data, missed_ids1 = merge_final(result)
             df = pd.DataFrame(df_data)
 
@@ -63,12 +64,14 @@ def main():
                  """)
 
         if 'result' in st.session_state:
-            # Show intermediate steps
             try:
                 st.write("Intermediate steps:")
                 for i in range(1, 4):
-                    file_extention = "csv" if i == 1 else "txt"
-                    with open(f"temp/rag_step_{i}.{file_extention}", "r") as f:
-                        st.write(f.read())
+                    if i == 1:
+                        df = pd.read_csv(f"temp/rag_step_{i}.csv")
+                        st.write(df)
+                    else:
+                        with open(f"temp/rag_step_{i}.txt", "r") as f:
+                            st.write(f.read())
             except FileNotFoundError:
                 st.write("Intermediate steps not found")

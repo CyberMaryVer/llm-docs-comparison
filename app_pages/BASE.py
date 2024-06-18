@@ -47,6 +47,7 @@ def main():
                 st.session_state["result"] = result
 
         if 'result' in st.session_state:
+            result = st.session_state["result"]
             df_data, missed_ids1 = merge_final(result)
             df = pd.DataFrame(df_data)
 
