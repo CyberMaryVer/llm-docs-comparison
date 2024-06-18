@@ -54,11 +54,13 @@ def main():
             st.write(df)
 
     with col2:
-        st.write("This is the RAG approach for comparing two documents. "
-                 "The documents are compared using the LLM model from OpenAI. "
-                 "The documents are split into pages and the LLM model is used to vectorize the pages. "
-                 "Then pages are compared using the LLM model page by page to generate a set of comparison results. "
-                 "Finally, the comparison results are aggregated to generate a final comparison result. ")
+        st.markdown("""
+        - This is the RAG approach for comparing two documents.
+        - The documents are compared using the LLM model from OpenAI.
+        - The documents are split into pages and the LLM model is used to vectorize the pages.
+        - Then pages are compared using the LLM model page by page to generate a set of comparison results.
+        - Finally, the comparison results are aggregated to generate a final comparison result. 
+                 """)
 
         if 'result' in st.session_state:
             # Show intermediate steps

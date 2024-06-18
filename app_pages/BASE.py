@@ -54,11 +54,13 @@ def main():
             st.write(df)
 
     with col2:
-        st.write("This is the base approach for comparing two documents. "
-                 "The documents are compared using the LLM model from OpenAI. "
-                 "The documents are split into pages and the LLM model is used to summarize the pages. "
-                 "The summaries are then compared using the LLM model to generate a final comparison result. "
-                 "The final result is displayed as a table showing the comparison between the two documents.")
+        st.markdown("""
+        - This is the base approach for comparing two documents.
+        - The documents are compared using the LLM model from OpenAI.
+        - The documents are split into pages and the LLM model is used to summarize the pages.
+        - The summaries are then compared using the LLM model to generate a final comparison result.
+        - The final result is displayed as a table showing the comparison between the two documents.
+                         """)
 
         if 'result' in st.session_state:
             # try to open the intermediate steps

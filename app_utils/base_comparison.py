@@ -93,7 +93,9 @@ def summarize_document(doc_path, api_key, model_name="gpt-4o"):
     llm = create_llm(api_key, model_name)
     map_reduce_chain = create_map_reduce_chain(llm)
     result = map_reduce_chain.invoke(pages)
-    result = result['output']
+    with open("temp/debug.txt", "w") as f:
+        f.write(str(result))
+    result = str(result)
     return result
 
 
