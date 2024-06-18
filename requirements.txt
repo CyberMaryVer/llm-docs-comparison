@@ -1,0 +1,11 @@
+langchain
+openai
+langchain_openai
+langchain-community
+docx2txt
+requests
+tqdm
+matplotlib
+numpy
+pandas
+faiss-cpu
