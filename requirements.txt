@@ -9,3 +9,9 @@ matplotlib
 numpy
 pandas
 faiss-cpu
+
+streamlit
+streamlit-authenticator
+streamlit-on-Hover-tabs
+streamlit-shadcn-ui
+pandas
