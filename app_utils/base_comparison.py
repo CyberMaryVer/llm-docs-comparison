@@ -35,12 +35,15 @@ Helpful Answer:"""
 COMPARE_PROMPT = """
 You are a legal assistant. Your task is to analyze two documents summaries and identify key differences.
 Focus on clauses, conditions, obligations, restrictions, dates, and other relevant details.
+Finally, add key_difference that compares risks and which document is more beneficial.
 
 Return following structure in the JSON format:
 {"key_difference1": {"Document 1": "...", "Document 2": "...", "Legal Assistant comment" : "..."},
 "key_difference2": {"Document 1": "...", "Document 2": "...", "Legal Assistant comment" : "..."},
 ...
 }
+
+Return only JSON string! Do not return anything else.
 
 DOCUMENT 1 SUMMARY:
 {doc1}
@@ -102,7 +105,7 @@ def summarize_document(doc_path, api_key, model_name="gpt-4o"):
     chain = create_map_reduce_chain(llm)
     # chain = create_stuff_chain(llm)
     result = chain.invoke(pages)
-    with open("temp/debug.txt", "w") as f:
+    with open("temp/debug.txt", "w", encoding="utf-8") as f:
         f.write(str(result))
     result = result['output_text']
     return result
@@ -114,7 +117,8 @@ def pipeline(doc1_path, doc2_path, api_key, model_name="gpt-4o", save_intermedia
     result2 = summarize_document(doc2_path, api_key, model_name)
     save_step_in_temp_dir(result2, 2, 'base_step') if save_intermediate_steps else None
     compare_prompt = fill_compare_prompt(result1, result2)
-    final_result = ask_openai(compare_prompt, model_name=model_name, max_tokens=4000)
+    final_model_name = "gpt-4o" if model_name == "gpt-3.5-turbo" else model_name
+    final_result = ask_openai(compare_prompt, model_name=final_model_name, max_tokens=4000)
     save_step_in_temp_dir(final_result, 3, 'base_step') if save_intermediate_steps else None
     return final_result
 

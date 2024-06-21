@@ -1,7 +1,7 @@
 from PIL import Image
 
 try:
-    im = Image.open("logo.png")
+    im = Image.open("logo2.png")
 except:
     im = "🤖"
 

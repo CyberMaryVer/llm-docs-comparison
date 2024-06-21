@@ -4,16 +4,7 @@ import pandas as pd
 import os
 
 from app_utils.base_comparison import pipeline
-from app_utils.general import merge_final
-
-
-def save_files_in_temp_dir(files):
-    temp_dir = "temp"
-    os.makedirs(temp_dir, exist_ok=True)
-    for i, file in enumerate(files):
-        with open(os.path.join(temp_dir, f"file_{i}.docx"), "wb") as f:
-            f.write(file.getvalue())
-    return os.path.join(temp_dir, "file_0.docx"), os.path.join(temp_dir, "file_1.docx")
+from app_utils.general import merge_final, df_to_structured_html, save_files_in_temp_dir
 
 
 def main():
@@ -44,20 +35,22 @@ def main():
         if 'files' in st.session_state and compare_button:
             with st.spinner("Comparing documents... It may take a while... (up to 30 minutes)"):
                 result = pipeline(doc1, doc2, api_key, llm_model, save_intermediate_steps=True)
-                st.session_state["result"] = result
+                st.session_state["base_result"] = result
 
-        if 'result' in st.session_state:
-            result = st.session_state["result"]
+        if 'base_result' in st.session_state:
+            result = st.session_state["base_result"]
             df_data, missed_ids1 = merge_final(result)
             df = pd.DataFrame(df_data)
+            text_md = df_to_structured_html(df)
+            st.markdown(text_md, unsafe_allow_html=True)
 
             # Show the result
             st.write(df)
 
     with col2:
         st.markdown("""
-        - This is the base approach for comparing two documents.
-        - The documents are compared using the LLM model from OpenAI.
+        ### This is the base approach for comparing two documents.
+        The documents are compared using the LLM model from OpenAI.
         - The documents are split into pages and the LLM model is used to summarize the pages.
         - The summaries are then compared using the LLM model to generate a final comparison result.
         - The final result is displayed as a table showing the comparison between the two documents.
@@ -66,9 +59,9 @@ def main():
         if 'result' in st.session_state:
             # try to open the intermediate steps
             try:
-                st.write("Intermediate steps:")
+                st.write("### Intermediate steps:")
                 for i in range(1, 4):
-                    with open(f"temp/base_step_{i}.txt", "r") as f:
+                    with open(f"temp/base_step_{i}.txt", "r", encoding="utf-8") as f:
                         st.write(f.read())
             except FileNotFoundError:
                 st.write("Intermediate steps not found")

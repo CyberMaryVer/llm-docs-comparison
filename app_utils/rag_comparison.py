@@ -1,5 +1,5 @@
 from langchain.embeddings.openai import OpenAIEmbeddings
-from langchain.vectorstores.faiss import FAISS
+from langchain_community.vectorstores import FAISS
 from tqdm import tqdm
 import pandas as pd
 import os
@@ -88,6 +88,24 @@ def compare_chunks(pages1, faiss_index, compare_prompt1, model_name="gpt-3.5-tur
         final_result = ask_openai(formatted_compare_prompt, model_name=model_name, max_tokens=1000, verbose=False)
         comparisons.append(final_result)
         similarities.append(score1)
+
+    return comparisons, similarities
+
+
+def calculate_similarities(pages1, faiss_index, threshold=0.5):
+    similarities = []
+    comparisons = []
+    for page in tqdm(pages1):
+        chunk = page.page_content
+        chunk_embedding = get_embedding(chunk)
+        similar_chunks = faiss_index.similarity_search_with_score_by_vector(chunk_embedding, k=4)
+        similar_chunks = [x for x in similar_chunks if x[1] < threshold]
+        closest_score = similar_chunks[0][1]
+        closest_chunk = similar_chunks[0][0].page_content
+        num_similar_chunks = len(similar_chunks)
+        similarity_rank = closest_score + (1 - num_similar_chunks / 4)
+        similarities.append(similarity_rank)
+        comparisons.append((chunk, closest_chunk))
 
     return comparisons, similarities
 
